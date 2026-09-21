@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT Professional Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Color Palette: Gray & Mint */
+      --bg-main: #f8fafc;
+      --bg-card: #ffffff;
+      --gray-dark: #1e293b;
+      --gray-medium: #475569;
+      --gray-light: #e2e8f0;
+      --gray-border: #cbd5e1;
+      
+      --mint-primary: #10b981;
+      --mint-hover: #059669;
+      --mint-light: #ecfdf5;
+      --mint-glow: rgba(16, 185, 129, 0.2);
+
+      --font-stack: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-stack);
+      background-color: var(--bg-main);
+      color: var(--gray-dark);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* --- Navigation --- */
+    nav {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--gray-light);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px;
+    }
+    .brand {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--gray-dark);
+    }
+    .brand span {
+      color: var(--mint-primary);
+    }
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--gray-medium);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover {
+      color: var(--mint-primary);
+    }
+
+    /* --- Main Layout: Two Column Layout --- */
+    .two-column-layout {
+      display: grid;
+      grid-template-columns: 450px 1fr;
+      gap: 30px;
+      align-items: start;
+      padding: 40px 0;
+    }
+
+    @media (max-width: 900px) {
+      .two-column-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* --- Left Panel: Resume Header & Summary --- */
+    .left-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--gray-light);
+      border-radius: 12px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      position: sticky;
+      top: 80px;
+    }
+    .profile-photo-container {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 20px;
+    }
+    .profile-photo {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--mint-primary);
+      box-shadow: 0 10px 25px var(--mint-glow);
+    }
+    .hero-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gray-dark);
+      margin-bottom: 6px;
+    }
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--mint-primary);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+    .hero-bio {
+      color: var(--gray-medium);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .badge-group {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .badge {
+      background-color: var(--mint-light);
+      color: var(--mint-primary);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    .contact-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+    .btn-mint {
+      background-color: var(--mint-primary);
+      color: #ffffff;
+      border: none;
+    }
+    .btn-mint:hover {
+      background-color: var(--mint-hover);
+      box-shadow: 0 4px 12px var(--mint-glow);
+    }
+    .btn-outline {
+      background-color: transparent;
+      color: var(--gray-dark);
+      border: 1px solid var(--gray-border);
+    }
+    .btn-outline:hover {
+      background-color: var(--gray-light);
+    }
+
+    /* --- Right Panel: Projects --- */
+    .right-panel {
+      min-width: 0; /* Prevents CSS Grid overflow issue with flex elements */
+    }
+
+    /* Section Headers inside Right Panel */
+    .panel-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gray-dark);
+      margin-bottom: 4px;
+    }
+    .panel-subtitle {
+      color: var(--gray-medium);
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+    }
+
+    /* --- Sliding Projects Panel --- */
+    .slider-wrapper {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      background: var(--bg-card);
+      border: 1px solid var(--gray-light);
+    }
+    .slider-track {
+      display: flex;
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .slide {
+      min-width: 100%;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .slide-img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--gray-light);
+    }
+    .slide-content h3 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+      color: var(--gray-dark);
+    }
+    .slide-content p {
+      color: var(--gray-medium);
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+    }
+    .slide-tech {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .slide-tech span {
+      background: var(--gray-light);
+      color: var(--gray-dark);
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    /* Slider Nav Controls */
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--gray-border);
+      color: var(--gray-dark);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: all 0.2s;
+      z-index: 10;
+    }
+    .slider-btn:hover {
+      background: var(--mint-primary);
+      color: #ffffff;
+      border-color: var(--mint-primary);
+    }
+    .slider-btn.prev { left: 10px; }
+    .slider-btn.next { right: 10px; }
+
+    .slider-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gray-border);
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .dot.active {
+      background: var(--mint-primary);
+      width: 24px;
+      border-radius: 10px;
+    }
+
+    /* --- Work Experience (Full Width Below) --- */
+    .experience-section {
+      background-color: #ffffff;
+      border-top: 1px solid var(--gray-light);
+      padding: 60px 0;
+    }
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gray-dark);
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: var(--gray-medium);
+      margin-bottom: 40px;
+      font-size: 0.95rem;
+    }
+    .timeline {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--gray-light);
+    }
+    @media (min-width: 768px) {
+      .timeline::before {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 40px;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: 11px;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 4px solid var(--mint-primary);
+      z-index: 2;
+    }
+    @media (min-width: 768px) {
+      .timeline-dot {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+    .timeline-content {
+      margin-left: 50px;
+      background: var(--bg-card);
+      padding: 24px;
+      border-radius: 8px;
+      border: 1px solid var(--gray-light);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    @media (min-width: 768px) {
+      .timeline-item:nth-child(odd) .timeline-content {
+        margin-left: 0;
+        margin-right: calc(50% + 30px);
+      }
+      .timeline-item:nth-child(even) .timeline-content {
+        margin-left: calc(50% + 30px);
+      }
+    }
+    .job-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gray-dark);
+    }
+    .company-name {
+      color: var(--mint-primary);
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+    .job-date {
+      font-size: 0.8rem;
+      color: var(--gray-medium);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .job-duties {
+      list-style-type: disc;
+      margin-left: 18px;
+      color: var(--gray-medium);
+      font-size: 0.9rem;
+    }
+    .job-duties li {
+      margin-bottom: 6px;
+    }
+
+    /* --- Footer --- */
+    footer {
+      background: var(--gray-dark);
+      color: var(--gray-light);
+      text-align: center;
+      padding: 30px 0;
+      font-size: 0.9rem;
+    }
+    footer span {
+      color: var(--mint-primary);
+    }
+
+    /* Base Modal (Backdrop) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(5px);
+  justify-content: center;
+  align-items: center;
+}
+
+/* Nested Modal Overlaps First Modal */
+.modal-nested {
+  z-index: 1100;
+  background-color: rgba(0, 0, 0, 0.95);
+}
+
+.modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Grid of Cover Cards in Main Modal */
+.main-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.gallery-card {
+  background: #1e1e1e;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.2s, border-color 0.2s;
+  text-align: left;
+}
+
+.gallery-card:hover {
+  transform: translateY(-5px);
+  border-color: #00ffd5;
+}
+
+.gallery-card img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+.gallery-card-body {
+  padding: 10px;
+}
+
+.gallery-card-body h4 {
+  color: #fff;
+  font-size: 0.95rem;
+  margin: 0 0 5px 0;
+}
+
+.gallery-card-body p {
+  color: #aaa;
+  font-size: 0.8rem;
+  margin: 0;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Header inside Nested Modal (Shows Cover Title & Description) */
+.gallery-header {
+  color: #fff;
+}
+
+.gallery-header h4 {
+  margin: 0 0 4px 0;
+  font-size: 1.1rem;
+  color: #00ffd5;
+}
+
+.gallery-header p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #ccc;
+  line-height: 1.4;
+}
+
+/* Big Image Display Container */
+.main-image-container {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  /*align-items: center;*/
+  background-color: #000;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.main-image-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Bottom Sub-Thumbnails Strip */
+.thumbnail-bar {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 5px 0;
+}
+
+.thumb-img {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0.6;
+  border: 2px solid transparent;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.thumb-img:hover {
+  opacity: 0.9;
+}
+
+.thumb-img.active {
+  opacity: 1;
+  border-color: #00ffd5;
+  transform: scale(1.05);
+}
+
+/* Close Buttons */
+.modal-close {
+  position: absolute;
+  top: -35px;
+  right: 0;
+  color: #fff;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  color: #00ffd5;
+}
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="container nav-container">
+      <div class="brand">John Rhodel<span>.IT</span></div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Work</a></li>
+        <li><a href="#experience">Experience</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Modals -->
+ <div id="mainModal" class="modal">
+  <div class="modal-content">
+    <span class="modal-close" id="closeMainModal">&times;</span>
+    <h3 style="color:#fff; text-align:center; margin-bottom: 15px;">Select Project</h3>
+    <div class="main-gallery-grid" id="mainGalleryGrid"></div>
+  </div>
+</div>
+
+<!-- SECOND NESTED MODAL: Overlapping Modal -->
+<div id="nestedModal" class="modal modal-nested">
+  <div class="modal-content">
+    <span class="modal-close" id="closeNestedModal">&times;</span>
+    
+    <!-- Title & Cover Description Header -->
+    <div class="gallery-header">
+      <h4 id="nestedGalleryTitle"></h4>
+      <p id="nestedGalleryDescription"></p>
+    </div>
+
+    <!-- Big View Container -->
+    <div class="main-image-container">
+      <img id="nestedDisplayImg" src="" alt="Main Display">
+    </div>
+
+    <!-- Sub-Thumbnails Strip -->
+    <div class="thumbnail-bar" id="nestedThumbnailContainer"></div>
+  </div>
+</div>
+
+  <!-- Main Content: Side-by-Side Area -->
+  <div class="container two-column-layout" id="about">
+    
+    <!-- LEFT PANEL: Photo, Title, Bio -->
+    <aside class="left-panel">
+      <div class="profile-photo-container">
+        <img src="https://drive.google.com/thumbnail?id=17ZG8amIundudisgKHNP5V2VNdW1u7Mnc&sz=w1000" alt="IT Professional Profile" class="profile-photo">
+      </div>
+      <h1 class="hero-title">John Rhodel Enriquez</h1>
+      <p class="hero-subtitle">Software Developer / Data Analyst</p>
+      
+      <p class="hero-bio">
+        IT professional with experience across software development, database design, business intelligence, reporting, and process automation. Skilled in developing and supporting .NET applications, designing SQL Server databases and data models, and transforming business requirements into reliable technical solutions. <br><br>
+        Experienced in collaborating with stakeholders to understand business problems, document requirements, design application and data solutions, and develop supporting technical and user documentation. Strong background in creating stored procedures, views, temporary tables, and data models using SQL Server, with experience working with SAP S/4HANA data and enterprise systems. <br><br>
+        Developed and automated reports, dashboards, and analytics solutions using Power BI, SSRS, Crystal Reports, and Zoho Analytics, supporting payroll, billing, sales, operational, and management reporting. Also experienced in automating repetitive business processes using Microsoft Power Automate and n8n, reducing manual effort and improving process efficiency. <br><br>
+
+        Core Areas of Expertise<br>
+        Software Development: .NET, ASP.NET, Iron Speed, DevExpress<br>
+        Database & Data: SQL Server, SAP S/4HANA, database design, data modeling, stored procedures, views, temporary tables<br>
+        Business Intelligence: Power BI, Zoho Analytics<br>
+        Reporting: SSRS, Crystal Reports, Power BI<br>
+        Process Automation: Microsoft Power Automate, n8n<br>
+        Business Analysis: Requirements gathering, stakeholder meetings, BRD development, process analysis<br>
+        Documentation: Technical documentation, business requirements documents, user manuals<br>
+        Data & Reporting Solutions: Payroll, billing, operational, sales, and management reporting<br>
+        System Support: Application troubleshooting, debugging, maintenance, and reporting support
+      </p>
+      
+      <div class="badge-group">
+        <span class="badge">.NET Developer</span>
+        <span class="badge">Document Automation</span>
+        <span class="badge">Report Specialist</span>
+        <span class="badge">Data Modeller</span>
+        <span class="badge">Technical Documentator</span>
+      </div>
+
+      <div class="contact-buttons">
+        <a href="https://drive.google.com/uc?export=download&id=1lp9v7mXjpsqE963Dctdh0oPNolEDPGsA"   target="_blank" class="btn btn-mint">Download Resume</a>
+        <a href="mailto:johnrhodelenriquez@gmail.com" class="btn btn-outline">Contact Me</a>
+      </div>
+    </aside>
+
+    <!-- RIGHT PANEL: Projects -->
+    <main class="right-panel" id="projects">
+      <h2 class="panel-title">Featured Projects</h2>
+      <p class="panel-subtitle">Slide through some of my development achievements.</p>
+
+      <div class="slider-wrapper">
+        <button class="slider-btn prev" id="prevBtn" aria-label="Previous Project">&#10094;</button>
+        <button class="slider-btn next" id="nextBtn" aria-label="Next Project">&#10095;</button>
+        
+        <div class="slider-track" id="sliderTrack">
+          
+          <!-- Slide 1 -->
+          <div class="slide">
+            <img src="https://drive.google.com/thumbnail?id=15Hwq4_ORrzhHMe9oQbKtnSLrE_rwdGBl&sz=w1000" alt="Zoho Analytics" class="slide-img">
+            <div class="slide-content">
+              <h3>Zoho Analytics</h3>
+              <ul>
+                <li>Developed and maintained multiple Zoho Analytics projects focused on transforming raw business data into interactive dashboards, reports, and actionable insights.</li>
+                <li>Designed data models, automated data integration, created calculated metrics, and developed interactive dashboards with drill-down capabilities.</li>
+                <li>The projects included Sales Dashboards, Financial Dashboards, Product Dashboards, Cross-Departmental Dashboards, and operational KPI reporting, 
+                providing stakeholders with centralized and reliable business intelligence for monitoring performance and supporting data-driven decisions </li>
+              </ul>
+              
+              <div class="slide-tech">
+                <span>Zoho Analytics</span>
+                <span>SQL</span>
+                <span>Salesforce</span>
+                <span>Stripe</span>
+                <span>Quickbooks</span>
+                <span>Xero</span>
+                <span>Zoho People</span>
+                <span>Click Up</span>
+                <span>Google Drive</span>
+              </div>
+              
+              <a href="#" class="btn btn-mint open-main-modal-btn" 
+                style="padding: 6px 14px; font-size: 0.85rem;"
+                data-galleries='[
+                  {
+                    "title": "Monthly Sales Dashboard",
+                    "cover": "https://drive.google.com/thumbnail?id=1yDtJdzygdvyIjyQzb4y-uyt3MTvaDULd&fit=crop&q=80&w=400",
+                    "description": "A consolidated view of monthly sales performance, tracking key metrics such as total revenue, number of transactions, growth rate, sales by product/service, month-over-month trends and cancellation, retention, renewal and attritio rate of customers to help management monitor performance and identify growth opportunities",
+                    "subImages": [
+
+                        "https://lh3.googleusercontent.com/d/1yDtJdzygdvyIjyQzb4y-uyt3MTvaDULd=s0",
+                        "https://lh3.googleusercontent.com/d/1hP0PaiRG2TwYEdjnGJ5zh_0ogd1EjWCd=s0",
+                        "https://lh3.googleusercontent.com/d/1kmGJodLiodPHwSg_L2wE5rdHqXfdADkp=s0",
+                        "https://lh3.googleusercontent.com/d/1hiqF3FEqMk147VAHNWu8M5POnwqu_zIJ=s0",
+                        "https://lh3.googleusercontent.com/d/1v0UTFWDhZYe06t4V2VInQFQANI4iWNuw=s0",
+                        "https://lh3.googleusercontent.com/d/1_c45fEwBV5kJ2gvbc_dy3RSbQ8Xbth7L=s0",
+                        "https://lh3.googleusercontent.com/d/1n8zyvoMpfc_qVDpGGTmHD827hvicmATV=s0"          
+                      
+                    ]
+                  },
+                  {
+                    "title": "Executive Dashboard", 
+                    "cover": "https://drive.google.com/thumbnail?id=1v0ekdX4-adyB0-HWKPXdvI5Wyp1YzQQt&fit=crop&q=80&w=400",
+                    "description": "A view of overall business performance, highlighting revenue, sales, customer growth, operational KPIs, forecast accuracy and key trends to help executives quickly monitor business health and make informed strategic decisions",
+                    "subImages": [
+                        "https://lh3.googleusercontent.com/d/1v0ekdX4-adyB0-HWKPXdvI5Wyp1YzQQt=s0",
+                        "https://lh3.googleusercontent.com/d/1gIFFNOT7GsR82uS1wyA1MwLW_rIAwwML=s0",
+                        "https://lh3.googleusercontent.com/d/15RmkkdEPf_ntR0wj95oSs5csGh7Ijtjo=s0",
+                        "https://lh3.googleusercontent.com/d/1RH2lug17ChQcOfSoC6Lkxkc3W0ercz1P=s0",
+                        "https://lh3.googleusercontent.com/d/1Y_tOhdkQb00yZis7fIgeS5clKQjzQSuL=s0",
+                        "https://lh3.googleusercontent.com/d/1XzNCrW27HpV264oJ_4VPFW6S90MI5Jmp=s0",
+                        "https://lh3.googleusercontent.com/d/1gOY_mgNa03WIjVIA5Ad23scZmLD4Ztp-=s0",
+                        "https://lh3.googleusercontent.com/d/1j5exGOO2MEwJBsHzxkJiiqud_gU_kSNg=s0",
+                        "https://lh3.googleusercontent.com/d/13TNQZPgn-tL0rZUOYWvvhi0OJo9xGkYZ=s0"          
+                      
+                    ]
+                  },
+                     {
+                    "title": "Salesperson Sales", 
+                    "cover": "https://drive.google.com/thumbnail?id=1Q6AebZg2_SJukMXtsoboRQahcb_Cr-TL&fit=crop&q=80&w=400",
+                    "description": "Provides a detailed view of individual sales performance, tracking revenue, sales targets, deals closed, conversion rates, pipeline activity, and sales trends to help salespeople and managers monitor performance and identify opportunities",
+                    "subImages": [
+                        "https://lh3.googleusercontent.com/d/1Q6AebZg2_SJukMXtsoboRQahcb_Cr-TL=s0",
+                        "https://lh3.googleusercontent.com/d/12t3IeV5hRWY4nN1L5XhMo4_EprlLWJQf=s0",
+                        "https://lh3.googleusercontent.com/d/19kC8Z-lo6roxhYIuRQKW9JPYyAWbjVg6=s0"       
+                      
+                    ]
+                  },
+
+                  { 
+                    "title": "Sales Manager Dashboard", 
+                    "cover": "https://drive.google.com/thumbnail?id=141XvnaBvmNE1kdrN0u13A5LBMTTha4LR&fit=crop&q=80&w=400",
+                    "description": "Provides an overview of team sales performance, tracking revenue, targets, pipeline, conversion rates, salesperson performance, and sales trends to help managers monitor team productivity and identify areas for improvement",
+                    "subImages": [
+                        "https://lh3.googleusercontent.com/d/141XvnaBvmNE1kdrN0u13A5LBMTTha4LR=s0",
+                        "https://lh3.googleusercontent.com/d/1PKKLatA66MPHnjk-FwJd8mGooILfqm_F=s0",
+                        "https://lh3.googleusercontent.com/d/1FlAYun_rRMphATK7Mgv1EaP2Np0_KpiQ=s0"       
+                      
+                    ]
+                  },
+                  { 
+                    "title": "Yearly Revenue Dashboard", 
+                    "cover": "https://drive.google.com/thumbnail?id=1MNYzePR8lqjqGvxX0-a0XZyMVL6JnLx8&fit=crop&q=80&w=400",
+                    "description": "Provides a high-level view of annual revenue performance, tracking total revenue, year-over-year growth, monthly trends, revenue by product or service, and performance against targets to help management monitor financial performance and growth",
+                    "subImages": [
+                        "https://lh3.googleusercontent.com/d/1MNYzePR8lqjqGvxX0-a0XZyMVL6JnLx8=s0",
+                        "https://lh3.googleusercontent.com/d/1x68Ud0YcBv-2Lb810thv0HH1pHaZSc66=s0",
+                        "https://lh3.googleusercontent.com/d/1pIfX4kujS7Ee9q3Zp5S-uX37MftFYi1_=s0"       
+                      
+                    ]
+                  },
+                  { 
+                    "title": "Non-Sufficient Funds Dashboard", 
+                    "cover": "https://drive.google.com/thumbnail?id=16WpwzgHNAOMlcNCu3ysJnokUbkhHuSfN&fit=crop&q=80&w=400",
+                    "description": "Provides an overview of payment failures caused by insufficient funds, tracking NSF transactions, affected customers, amounts, failure trends, and recovery status to help management monitor payment issues and improve collection efforts.",
+                    "subImages": [
+                        "https://lh3.googleusercontent.com/d/16WpwzgHNAOMlcNCu3ysJnokUbkhHuSfN=s0",
+                        "https://lh3.googleusercontent.com/d/1aWpZ8IIxbmpSYyY5XJhIaOhgJURTCJ1U=s0"     
+                      
+                    ]
+                  },
+                  { 
+                    "title": "Cybersweep Dashboard", 
+                    "cover": "https://drive.google.com/thumbnail?id=1Eg3sZKIu5O48jGcmWzqLOnC_7z23sB9B&fit=crop&q=80&w=400",
+                    "description": "Provides an overview of cybersweep audit done by the customer support under cybersweep department helping the leadership identify who is doing well among the employees",
+                    "subImages": [
+                        "https://lh3.googleusercontent.com/d/1Eg3sZKIu5O48jGcmWzqLOnC_7z23sB9B=s0",
+                        "https://lh3.googleusercontent.com/d/18qM3SQmffPwEavmBhYnoaD1vcCMygDG-=s0"     
+                      
+                    ]
+                  },
+                  { 
+                    "title": "Credit Block Dashboard", 
+                    "cover": "https://drive.google.com/thumbnail?id=15FcKiDm6eyOBdjB2TT47vC00vmV-UkYM&fit=crop&q=80&w=400",
+                    "description": "Provides an overview of unblocking clients on Credit Block Department helping the leadership identify who is doing well among the employees and clients that are need to be prioritized",
+                    "subImages": [
+                        "https://lh3.googleusercontent.com/d/15FcKiDm6eyOBdjB2TT47vC00vmV-UkYM=s0",
+                        "https://lh3.googleusercontent.com/d/1jRHOp-JzAz6UtpZrHnRU3_WoaR9369uw=s0"     
+                      
+                    ]
+                  },
+                  {
+                    "title": "Cross Departmental Dashboard", 
+                    "cover": "https://drive.google.com/thumbnail?id=1LsrOvcDs2qaxU7BLJ5pjQci_OkC1mK-6&fit=crop&q=80&w=400",
+                    "description": "Provides an overview of unblocking clients on Credit Block Department helping the leadership identify who is doing well among the employees and clients that are need to be prioritized",
+                    "subImages": [
+                        "https://lh3.googleusercontent.com/d/1LsrOvcDs2qaxU7BLJ5pjQci_OkC1mK-6=s0",
+                        "https://lh3.googleusercontent.com/d/13FxJzia9wEEeFZZZokzff4Joyp0mNDbi=s0",
+                        "https://lh3.googleusercontent.com/d/1E5s3IQhWqaEljLwwp-n7lKQK_QfL_IoN=s0",
+                        "https://lh3.googleusercontent.com/d/167tYhPIO13Y_4HEUiNenlourM_3df2eE=s0"
+
+                      
+                    ]
+                  }
+                ]'>View Zoho Analytics Projects</a>
+            </div>
+          </div>
+
+          <!-- Slide 2 
+          <div class="slide">
+            <img src="https://drive.google.com/thumbnail?id=139mEBR_YVrNYmxfyP2gTEP8eGj9LCYrp&sz=w1000" alt="Power BI" class="slide-img">
+            <div class="slide-content">
+              <h3>Power BI</h3>
+              <p>Engineered zero-downtime deployment automation using GitLab CI/CD and Kubernetes, cutting deployment cycles from hours to under 10 minutes.</p>
+              <div class="slide-tech">
+                <span>Kubernetes</span>
+                <span>GitLab CI</span>
+                <span>Helm</span>
+                <span>Prometheus</span>
+              </div>
+              <a href="#" class="btn btn-mint" style="padding: 6px 14px; font-size: 0.85rem;">View Workflow</a>
+            </div>
+          </div> -->
+
+          <!-- Slide 3 -->
+          <div class="slide"> 
+            <img src="https://drive.google.com/thumbnail?id=1Y4xMhTLwCP6OdumLwPJTJFHC6AX-KX-p&sz=w1000" alt="SAP S4 HANA" class="slide-img">
+            <div class="slide-content">
+              <h3>SAP S4 HANA</h3>
+              <ul>
+                <li>Developed and maintained multiple SAP S4 HANA applications under FI, PP, MM and SD modules using SAP SALV</li>
+                <li>Designed queries in CDS view and provide support for existing SAP applications</li>
+                <li>The projects included Manual Bank Upload, Slaughter House Sales Creation, Production Variance, Materials List, and PR PO GR Monitoring </li>
+              </ul>
+              <div class="slide-tech">
+                <span>SALV</span>
+                <span>CDS View</span>
+                <span>SAP S4 HANA</span>
+                <span>BAPI</span>
+                <span>User Exits</span>
+              </div>
+              <a href="#" class="btn btn-mint open-main-modal-btn" 
+                style="padding: 6px 14px; font-size: 0.85rem;"
+                data-galleries='[
+                  {
+                    "title": "Manual Bank Upload",
+                    "cover": "https://drive.google.com/thumbnail?id=1GdgVGP09q5ZEK_f42DPLAYam4HohhL6G&fit=crop&q=80&w=400",
+                    "description": "A SAP project that lets the user upload bank transactions into SAP",
+                    "subImages": [
+
+                        "https://lh3.googleusercontent.com/d/1GdgVGP09q5ZEK_f42DPLAYam4HohhL6G=s0"        
+                      
+                    ]
+                  },
+                  {
+                    "title": "Slaughter House Sales Creation", 
+                    "cover": "https://drive.google.com/thumbnail?id=1WJn0BNYo8G85NAxKe28fJFoz4yTlo2cX&fit=crop&q=80&w=400",
+                    "description": "A SAP project for SD module, that monitors the slaughter house operations. They can upload the transactions or create new one depending on the user preference. This project also lets the slaughter house operations their sales.",
+                    "subImages": [
+                        "https://lh3.googleusercontent.com/d/1WJn0BNYo8G85NAxKe28fJFoz4yTlo2cX=s0",
+                        "https://lh3.googleusercontent.com/d/1lKbYetPCGec3SzwD9d32D5Kxji35Tecw=s0",
+                        "https://lh3.googleusercontent.com/d/10vC5W5HRsI0skElVRHqQ79BExQOfw5-T=s0"        
+                      
+                    ]
+                  },
+                     { 
+                    "title": "Production Variance", 
+                    "cover": "https://drive.google.com/thumbnail?id=1gRjg2nJjeFhW_QAHI9gieTaMwmzyNxyJ&fit=crop&q=80&w=400",
+                    "description": "A SAP project for CO And PP module that lets the management monitor the project variance base on the materials and its cost",
+                    "subImages": [
+                        "https://lh3.googleusercontent.com/d/1gRjg2nJjeFhW_QAHI9gieTaMwmzyNxyJ=s0",
+                        "https://lh3.googleusercontent.com/d/1p1KVn2_L4J9fl6cszQJNlTD2JtuRCSIN=s0"       
+                      
+                    ]
+                  },
+
+                  { 
+                    "title": "Materials List", 
+                    "cover": "https://drive.google.com/thumbnail?id=1ITyoN7MdUhXzqJ7aknd7yArjzroMP5Bs&fit=crop&q=80&w=400",
+                    "description": "A SAP project for MM module that lets the user monitor the material listing of the company",
+                    "subImages": [
+                        "https://lh3.googleusercontent.com/d/1ITyoN7MdUhXzqJ7aknd7yArjzroMP5Bs=s0",
+                        "https://lh3.googleusercontent.com/d/1FBpIaRMs75jdVpYF2vvkXm2w3XulbokC=s0"      
+                      
+                    ]
+                  },
+                  {
+                    "title": "PR PO GR Monitoring", 
+                    "cover": "https://drive.google.com/thumbnail?id=1hgAfrK7T5_hlHLK1pSUuQC3ekyWhRuEj&fit=crop&q=80&w=400",
+                    "description": "A SAP project for MM module that lets the user and management monitor the movement of materials from GR, PR and PO",
+                    "subImages": [
+                        "https://lh3.googleusercontent.com/d/1hgAfrK7T5_hlHLK1pSUuQC3ekyWhRuEj=s0",
+                        "https://lh3.googleusercontent.com/d/1KONZf1ve2XPPQbDgSfaVzqYt_Sd13A-U=s0"      
+                      
+                    ]
+                  }
+                ]'>View SAP S4 HANA Projects</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="slider-dots" id="sliderDots"></div>
+    </main>
+  </div>
+
+  <!-- Work Experience Section (Full Width) -->
+  <section id="experience" class="experience-section">
+    <div class="container">
+      <h2 class="section-title">Work History</h2>
+      <p class="section-subtitle">A timeline of my professional journey in Information Technology.</p>
+
+      <div class="timeline">
+        
+        <!-- Job 1 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="job-title">Data Analyst (Individual Contributor)</div>
+            <div class="company-name">Regal Credit Inc.</div>
+            <div class="job-date">12/2024 - 08/2026</div>
+            <ul class="job-duties">
+              <li>Analyzed and transformed 50,000+ Salesforce, Stripe, and QuickBooks records using SQL and Zoho Analytics to identify business trends, develop KPIs, and deliver recurring reports supporting leadership decision-making.</li>
+              <li>Designed and automated executive KPI dashboards using SQL and Zoho Analytics, integrating CRM and payment data to provide visibility into revenue, customer growth, sales performance, and operational trends.</li>
+              <li>Developed and optimized automated data pipelines integrating Salesforce, QuickBooks, Stripe, SharePoint, ClickUp, and Google Drive with Zoho Analytics, centralizing data from 7 business systems into a unified analytics environment for automated reporting, KPI monitoring, and business analysis.</li>
+              <li>Defined and documented database structures, tables, KPIs, business rules, and metric calculations, establishing consistent documentation and improving the transparency and maintainability of reporting solutions.</li>
+              <li>Automated repetitive business processes using n8n and Zapier, including folder creation, file organization, and file transfers to Google Drive, reducing manual effort and improving operational workflows.</li>
+              <li>Leveraged AI-assisted tools such as ChatGPT, Copilot, Zia, Gemini, and Claud to accelerate analytics development, using them to validate SQL queries, review KPI logic, troubleshoot data issues, and improve reporting development efficiency.</li>
+              <li>Key Projects: Sales Dashboard, Financial Dashboard, Product Dashboards (Cyber Sweep, Credit Block), Cross-Departmental Dashboard, NSF Dashboard and HR Training Completion Dashboard</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Career Break-->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="job-title">Career Break</div>
+            <div class="company-name"></div>
+            <div class="job-date">10/2023 - 12/2024</div>
+            <ul class="job-duties">
+              <li>Took a planned career break focused on personal development, outdoor endurance activities, and continuous self-learning in data analytics, BI Tools and other programming language</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Job 2 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="job-title">Business Intelligence Developer</div>
+            <div class="company-name">CONCENTRIX</div>
+            <div class="job-date">07/2023 - 10/2023</div>
+            <ul class="job-duties">
+              <li>Developed and maintained interactive Power BI and Excel dashboards and reports to monitor agent performance, billing leakage, and quality assurance metrics, improving reporting efficiency and management visibility; automated report generation and email distribution to leadership using VBA, reducing manual reporting effort.</li>
+              <li>Conducted in-depth analysis of agent productivity, QA, billing, and operational data to identify trends, performance patterns, anomalies, and opportunities for process improvement.</li>
+              <li>Collected, cleaned, transformed, and prepared 100,000+ rows of Excel data using Power Query and Excel for analysis and reporting, ensuring data accuracy, consistency, and readiness for downstream reporting.</li>
+              <li>Developed advanced DAX measures and calculations to support complex KPI analysis, performance metrics, and business reporting requirements.</li>
+              <li>Optimized Power BI reports and dashboards in Microsoft Fabric by improving report performance, configuring data refresh schedules, and managing workspace roles and access permissions</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Job 3 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="job-title">IT Functional Analyst and Developer</div>
+            <div class="company-name">Del Monte Philippines</div>
+            <div class="job-date">02/2021 - 03/2023</div>
+            <ul class="job-duties">
+              <li>Designed and maintained Power BI dashboards for IT asset inventory and operational monitoring that improves IT manager decision making to 80%.</li>
+              <li>Built relational data models and optimized schemas in SQL Server for efficient data retrieval and storage.</li>
+              <li>Automated data validation and quality checks using ASP.NET, improving reporting reliability.</li>
+              <li>Developed end-to-end data pipelines for structured and unstructured data sources.</li>
+              <li>Led data migration initiatives from unstructured sources to enterprise SQL databases</li>
+              <li>Automate manual task like putting invoice into Sharepoint drive and alerting IT manager about expiring contracts using Power Automate improving productivity.</li>
+              <li>Developed data models for storage of documents using Docuware that reduced the approval time of documents by 50%</li>
+              <li>Developed web applications for IT painpoints and requests, Pineapple estimates and Online Requests Approval using ASP.Net</li>
+              <li>Data encoder for IT PR requests on Oracle Suite ERP</li>
+              <li>Provide technical and requirements documentation on all projects I am part of</li>
+            </ul>
+          </div>
+        </div>
+
+         <!-- Job 4 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="job-title">Senior Analyst and Developer/SAP ABAP Developer</div>
+            <div class="company-name">ANFLO Group of Companies</div>
+            <div class="job-date">04/2014 - 02/2021</div>
+            <ul class="job-duties">
+              <li>Developed enterprise dashboards and reports using SAP ABAP, SAP HANA, SSRS, and Crystal Reports improving reporting speed</li>
+              <li>Built ALV dashboards tracking KPIs across CO, PP, MM, FI, and SD SAP modules</li>
+              <li>Designed data models and CDS views in SAP HANA for efficient analytics and reporting.</li>
+              <li>Transformed manual (hands on paper) reports into digital space improving productivity to 80% using SSRS and Crystal Reports</li>
+              <li>Designed SQL Server databases, table relationships, and audit triggers.</li>
+              <li>Part of investigation team on solving problem with integration of data from POS to ERP Database of Microsoft Dynamics</li>
+              <li>Develop various web applications like Truck Dispatch system, automation of SSS SSC/EC and Maternity Claims, migrating old systems to newer versions, automation of approvals of documents like PR, Capital Appropriations, PO, and Repair Orders, HR System and some accounting related systems</li>
+              <li>Provide technical and requirements documentation on all projects I am part of</li>
+            </ul>
+          </div>
+        </div>
+
+         <!-- Job 5 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="job-title">Delphi Developer and Support</div>
+            <div class="company-name">DIGILUTION</div>
+            <div class="job-date">10/2013 - 03/2014</div>
+            <ul class="job-duties">
+              <li>Handled and fixed errors on payroll, balance sheet and QA application reports by fixing SQL queries.</li>
+              <li>Support .NET application in SDK mobile for fruit quality</li>
+              <li>Provide support and investigation on the data loss after integration</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 John Rhodel Enriquez. Built with Gray & <span>Mint</span>.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript for Slider & Modals -->
+  <script>
+    const track = document.getElementById('sliderTrack');
+    const slides = Array.from(track.children);
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const dotsNav = document.getElementById('sliderDots');
+
+    let currentIndex = 0;
+
+    slides.forEach((_, index) => {
+      const dot = document.createElement('div');
+      dot.classList.add('dot');
+      if (index === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => goToSlide(index));
+      dotsNav.appendChild(dot);
+    });
+
+    const dots = Array.from(dotsNav.children);
+
+    function updateSlider() {
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+      });
+    }
+
+    function goToSlide(index) {
+      currentIndex = index;
+      updateSlider();
+    }
+
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateSlider();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      updateSlider();
+    });
+
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateSlider();
+    }, 6000);
+
+    document.addEventListener("DOMContentLoaded", () => {
+  const mainModal = document.getElementById("mainModal");
+  const nestedModal = document.getElementById("nestedModal");
+  const mainGalleryGrid = document.getElementById("mainGalleryGrid");
+  
+  const nestedGalleryTitle = document.getElementById("nestedGalleryTitle");
+  const nestedGalleryDescription = document.getElementById("nestedGalleryDescription");
+  const nestedDisplayImg = document.getElementById("nestedDisplayImg");
+  const nestedThumbnailContainer = document.getElementById("nestedThumbnailContainer");
+
+  const closeMainModal = document.getElementById("closeMainModal");
+  const closeNestedModal = document.getElementById("closeNestedModal");
+
+  // 1. OPEN MAIN MODAL
+  document.querySelectorAll(".open-main-modal-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const galleries = JSON.parse(btn.getAttribute("data-galleries") || "[]");
+      mainGalleryGrid.innerHTML = "";
+
+      galleries.forEach(item => {
+        const card = document.createElement("div");
+        card.classList.add("gallery-card");
+        card.innerHTML = `
+          <img src="${item.cover}" alt="${item.title}">
+          <div class="gallery-card-body">
+            <h4>${item.title}</h4>
+            <p>${item.description || ""}</p>
+          </div>
+        `;
+
+        // Pass title, description, and sub-images to nested modal on click
+        card.addEventListener("click", () => {
+          openNestedModal(item);
+        });
+
+        mainGalleryGrid.appendChild(card);
+      });
+
+      mainModal.style.display = "flex";
+    });
+  });
+
+  // 2. OPEN NESTED MODAL (Uses Cover's Description)
+  function openNestedModal(galleryItem) {
+    const { title, description, subImages } = galleryItem;
+
+    if (!subImages || subImages.length === 0) return;
+
+    // Set header content from cover
+    nestedGalleryTitle.textContent = title || "";
+    nestedGalleryDescription.textContent = description || "";
+
+    // Set default big image
+    nestedDisplayImg.src = subImages[0];
+
+    // Build thumbnail list
+    nestedThumbnailContainer.innerHTML = "";
+    subImages.forEach((imgSrc, idx) => {
+      const thumb = document.createElement("img");
+      thumb.src = imgSrc;
+      thumb.classList.add("thumb-img");
+      if (idx === 0) thumb.classList.add("active");
+
+      // Swap big picture when thumbnail is clicked
+      thumb.addEventListener("click", () => {
+        nestedDisplayImg.src = imgSrc;
+        document.querySelectorAll("#nestedThumbnailContainer .thumb-img").forEach(t => t.classList.remove("active"));
+        thumb.classList.add("active");
+      });
+
+      nestedThumbnailContainer.appendChild(thumb);
+    });
+
+    nestedModal.style.display = "flex";
+  }
+
+  // CLOSE LOGIC
+  closeMainModal.addEventListener("click", () => {
+    mainModal.style.display = "none";
+  });
+
+  closeNestedModal.addEventListener("click", () => {
+    nestedModal.style.display = "none";
+  });
+
+  window.addEventListener("click", (e) => {
+    if (e.target === nestedModal) {
+      nestedModal.style.display = "none";
+    } else if (e.target === mainModal) {
+      mainModal.style.display = "none";
+    }
+  });
+});
+  </script>
+</body>
+</html>
